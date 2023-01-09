@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title mb-3">Step 2</h1>
+    <form [formGroup]="registerForm" autocomplete="off" novalidate (ngSubmit)="registerUser(registerForm.value)">
+      <div class="mb-4 row">
+        <label for="country" class="col-form-label col-sm-2 pt-0">Country:</label>
+        <div class="d-grid col-md-5">
+          <select class="select-dropdown mb-1 col-auto" formControlName="country" id="country" #device (change)="onChange($event)">
+            <option value="">Choose Country</option>
+            <option *ngFor="let country of allCountries" [ngValue]="country">{{ country.name }}</option>
+          </select>
+          <div class="col-md-6">
+            <em *ngIf="isSubmitted && countries?.invalid">Please provide country</em>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-4 row" ng-app="MyApp" ng-controller="MyController">
+        <label for="province" class="col-form-label col-sm-2 pt-0">Province:</label>
+        <div class="d-grid col-md-5">
+          <select class="custom-select mb-1" formControlName="province" id="province">
+            <option value="">Choose province</option>
+            <option *ngFor="let province of provinces" [ngValue]="province">{{ province.name }}</option>
+          </select>
+          <div class="col-md-6">
+            <em *ngIf="isSubmitted && selectedProvince?.invalid">Please provide province</em>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <div class="col-md-1">
+          <button type="submit" class="btn btn-info">Register</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
